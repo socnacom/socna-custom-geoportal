@@ -11,7 +11,14 @@
     "publish"
   ],
   "files": [
-    "leaflet/",
+    "Common/",
+    "Leaflet",
+    "GpPluginLeaflet-map.css",
+    "GpPluginLeaflet-map.js",
+    "GpPluginLeaflet-src.css",
+    "GpPluginLeaflet-src.js",
+    "GpPluginLeaflet.css",
+    "GpPluginLeaflet.js",
     "package.json"
   ],
   "repository": {
