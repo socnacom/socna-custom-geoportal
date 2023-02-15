@@ -12,19 +12,19 @@
   "files": [
     "Common/",
     "OpenLayers/",
-    "GpPluginLeaflet-map.css",
-    "GpPluginLeaflet-map.js",
-    "GpPluginLeaflet-src.css",
-    "GpPluginLeaflet-src.js",
-    "GpPluginLeaflet.css",
-    "GpPluginLeaflet.js",
+    "GpPluginOpenLayers-map.css",
+    "GpPluginOpenLayers-map.js",
+    "GpPluginOpenLayers-src.css",
+    "GpPluginOpenLayers-src.js",
+    "GpPluginOpenLayers.css",
+    "GpPluginOpenLayers.js",
     "package.json"
   ],
   "repository": {
     "url": "https://github.com/socnacom/socna-custom-geoportal.git",
     "type": "git"
   },
-  "main": "GpPluginLeaflet-src.js",
+  "main": "GpPluginOpenLayers-src.js",
   "name": "socna-custom-geoportal",
   "devDependencies": {},
   "dependencies": {
@@ -43,5 +43,5 @@
   "date": "14/02/2023",
   "license": "CECILL-B",
   "bugs": {},
-  "description": "Socna custom of French Geoportal Extension for Leaflet"
+  "description": "Socna custom of French Geoportal Extension for OpenLayers"
 }
