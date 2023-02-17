@@ -1385,9 +1385,17 @@ var ReverseGeocode = (function (Control) {
       this._resultsSelectInteraction = new SelectInteraction({
         layers: [this._resultsFeaturesLayer],
       });
-      this._resultsSelectInteraction.on("select", (e) =>
-        this._onResultsFeatureSelect(e)
-      );
+      this._resultsSelectInteraction.on("select", (e) => {
+        if (e.selected.length > 0) {
+          const f = e.selected[0];
+          const location = f.getProperties().location;
+          this.dispatchEvent({
+            type: "reverse:onclickresult",
+            location,
+          });
+        }
+        this._onResultsFeatureSelect(e);
+      });
       map.addInteraction(this._resultsSelectInteraction);
 
       // 4. Si un layer switcher est présent dans la carte, on lui affecte des informations pour cette couche
@@ -1477,6 +1485,7 @@ var ReverseGeocode = (function (Control) {
     feature.setId(i);
     feature.setProperties({
       popupContent: this._fillPopupContent(location),
+      location: location,
     });
     feature.on("click", (e) => {
       this.dispatchEvent({

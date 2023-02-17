@@ -50175,7 +50175,15 @@ var ReverseGeocode = function (Control) {
         layers: [this._resultsFeaturesLayer]
       });
       this._resultsSelectInteraction.on("select", function (e) {
-        return _this5._onResultsFeatureSelect(e);
+        if (e.selected.length > 0) {
+          var f = e.selected[0];
+          var location = f.getProperties().location;
+          _this5.dispatchEvent({
+            type: "reverse:onclickresult",
+            location: location
+          });
+        }
+        _this5._onResultsFeatureSelect(e);
       });
       map.addInteraction(this._resultsSelectInteraction);
 
@@ -50264,7 +50272,8 @@ var ReverseGeocode = function (Control) {
     feature.setStyle(this._resultsDefaultStyle);
     feature.setId(i);
     feature.setProperties({
-      popupContent: this._fillPopupContent(location)
+      popupContent: this._fillPopupContent(location),
+      location: location
     });
     feature.on("click", function (e) {
       _this6.dispatchEvent({
