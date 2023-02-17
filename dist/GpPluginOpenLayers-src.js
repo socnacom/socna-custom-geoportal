@@ -49015,7 +49015,6 @@ var ReverseGeocode = function (Control) {
       render: options.render
     });
   }
-  ;
 
   // Inherits from ol.control.Control
   if (Control) ReverseGeocode.__proto__ = Control;
@@ -50120,7 +50119,6 @@ var ReverseGeocode = function (Control) {
         locationDescription += attr.city ? attr.city : "";
         break;
     }
-    ;
     return locationDescription;
   };
 
@@ -50245,6 +50243,7 @@ var ReverseGeocode = function (Control) {
    * @private
    */
   ReverseGeocode.prototype._addResultFeature = function (location, i) {
+    var _this6 = this;
     var map = this.getMap();
     // récupération de la position
     var position = [location.position.lon, location.position.lat];
@@ -50267,6 +50266,13 @@ var ReverseGeocode = function (Control) {
     feature.setProperties({
       popupContent: this._fillPopupContent(location)
     });
+    feature.on("click", function (e) {
+      _this6.dispatchEvent({
+        type: "reverse:onclickresult",
+        location: location
+      });
+      _this6._onResultsFeatureSelect(e);
+    });
     this._resultsFeatures.push(feature);
   };
 
@@ -50285,7 +50291,7 @@ var ReverseGeocode = function (Control) {
       if (attributes.hasOwnProperty(attr)) {
         if (attr !== "trueGeometry" && attr !== "extraFields" && attr !== "houseNumberInfos" && attr !== "_count") {
           popupContent += "<li>";
-          popupContent += "<span class=\"gp-attname-others-span\">" + attr.toUpperCase() + " : </span>";
+          popupContent += '<span class="gp-attname-others-span">' + attr.toUpperCase() + " : </span>";
           popupContent += attributes[attr];
           popupContent += " </li>";
         }
